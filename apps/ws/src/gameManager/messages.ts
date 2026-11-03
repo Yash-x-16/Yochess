@@ -1,3 +1,3 @@
 export const INIT_GAME = "INIT_GAME"
-export const Move ="MOVE" 
-export const gameOver = "GAMEOVER"
+export const MOVE ="MOVE" 
+export const GAMEOVER = "GAMEOVER"

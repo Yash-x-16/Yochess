@@ -1,5 +1,5 @@
 import WebSocket from "ws"
-import { INIT_GAME, Move } from "./messages.js";
+import { INIT_GAME, MOVE } from "./messages.js";
 import { Games } from "./games.js";
 import { gameTypes } from "./gameTypes.js";
 export class gameManager {
@@ -38,7 +38,7 @@ export class gameManager {
                 }
             } 
 
-            if(message.type===Move){
+            if(message.type===MOVE){
                 const cuurentGame = this.games.find(x => x.player1 || x.player2) 
                 if(cuurentGame){
                     cuurentGame.makeMove(socket ,message.move)
