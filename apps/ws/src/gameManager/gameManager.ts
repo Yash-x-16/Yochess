@@ -1,9 +1,10 @@
 import WebSocket from "ws"
-import { INIT_GAME } from "./messages.js";
-import { Games } from "./game.js";
+import { INIT_GAME, Move } from "./messages.js";
+import { Games } from "./games.js";
+import { gameTypes } from "./gameTypes.js";
 export class gameManager {
    //@ts-ignore
-    private games :Game[] 
+    private games :Games[] 
     private pendingUser : WebSocket | null;  
     private users:WebSocket[]
    
@@ -34,6 +35,13 @@ export class gameManager {
                     this.pendingUser = null
                 }else{
                      this.pendingUser = socket
+                }
+            } 
+
+            if(message.type===Move){
+                const cuurentGame = this.games.find(x => x.player1 || x.player2) 
+                if(cuurentGame){
+                    cuurentGame.makeMove(socket ,message.move)
                 }
             }
         })
